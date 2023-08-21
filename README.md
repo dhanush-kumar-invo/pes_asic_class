@@ -1,6 +1,6 @@
 # pes_asic_class
 
-### VLSI ASIC Physical Design Course
+## VLSI ASIC Physical Design Course
 ## Objectives
 The goal of the VLSI ASIC Physical Design course is to transform a logical RTL design into a practical physical layout suitable for manufacturing. This process ensures that the circuit's functionality aligns with design constraints, performance objectives, and manufacturing standards.
 
