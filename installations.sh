@@ -1,3 +1,9 @@
+sudo apt update
+sudo apt upgrade
+chmod +x run_ubuntu.sh
+./run_ubuntu.sh
+
+
 sudo apt-get install git vim -y
 sudo apt-get install autoconf automake autotools-dev curl libmpc-dev         libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo     gperf libtool patchutils bc zlib1g-dev git libexpat1-dev gtkwave -y
 cd
