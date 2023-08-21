@@ -1,6 +1,6 @@
 # pes_asic_class
 
-# VLSI ASIC Physical Design Course
+### VLSI ASIC Physical Design Course
 ## Objectives
 The goal of the VLSI ASIC Physical Design course is to transform a logical RTL design into a practical physical layout suitable for manufacturing. This process ensures that the circuit's functionality aligns with design constraints, performance objectives, and manufacturing standards.
 
@@ -142,24 +142,9 @@ You can also view the register contents during debugging:
 ### Unsigned Numbers
 Unsigned numbers, also referred to as non-negative numbers, represent magnitudes without sign or direction. They fall within the range: [0, (2^n) - 1].
 
-### Signed Numbers
-Signed numbers encompass both positive and negative magnitudes, in addition to zero. The range for positive signed numbers is [0, 2^(n-1) - 1], while negative signed numbers fall within the range [-2^(n-1), -1].
 
-## Labwork
+### Labwork
 
-### Program: signed.c - Maximum and Minimum Values of 64-bit Signed Numbers
-```c
-#include <stdio.h>
-#include <math.h>
-
-int main(){
-	long long int max = (long long int) (pow(2,63) -1);
-	long long int min = (long long int) (pow(2,63) *(-1));
-	printf("lowest number represented by signed 64-bit integer is %lld\n",min);
-	printf("highest number represented by signed 64-bit integer is %lld\n",max);
-	return 0;
-}
-```
 
 ### Program: unsigned.c - Maximum and Minimum Values of 64-bit Unsigned Numbers
 ```c
@@ -181,4 +166,4 @@ int main() {
 ```
 ![Unsigned Numbers](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/e32dbadb-460f-4ac8-aff0-e9f58dbec94f)
 
-For more details, refer to the respective code files in the [`unsigned.c`](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/unsigned.c) and [`signed.c`](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/signed.c) files.
+For more details, refer to the respective code files in the [`unsigned.c`](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/unsigned.c) 
