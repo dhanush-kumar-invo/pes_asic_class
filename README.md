@@ -82,7 +82,7 @@ Memory allocation assigns and manages memory segments for program data structure
 
 #### Labwork for RISCV Toolchain
 C Program:
-A C program 'p1.c' was created to calculate the sum from 1 to 'n' using a text editor like gedit.
+A C program '1ton.c' was created to calculate the sum from 1 to 'n' using a text editor like gedit.
 
 ```c
 #include <stdio.h>
@@ -98,7 +98,7 @@ int main() {
 
 The program was compiled using the GCC compiler to obtain the output."
 ```
-gcc p1.c
+gcc 1ton.c
 ./a.out
 ```
 ![p1](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/e050f42c-3117-44dd-a37e-fdbdb83c9e1f)
@@ -107,15 +107,15 @@ gcc p1.c
 Using the RISC-V GCC compiler, we compiled the C program.
 
 ```c
-riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o p1.o p1.c
+riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sum1ton.c 1ton.c
 ```
 
-Using ls -ltr p1.c we can check that the object file is created. 2
+Using ls -ltr 1ton.c we can check that the object file is created. 2
 ![ls -ltr](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/4f1651a4-88bf-451b-a451-5528b53b1316)
 
 To get the dissembled ALP code for the C program,
 ```
-riscv64-unknown-elf-objdump -d p1.o | less 
+riscv64-unknown-elf-objdump -d sum1ton.c | less 
 ```
 In order to view the main section, type /main 4
 ![Screenshot from 2023-08-21 19-11-17](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/70ca1873-e085-47fc-b08f-b3aa1725811c)
@@ -127,9 +127,9 @@ Here, since we used -O1 optimisation, the number of instructions are 26.
 
 In the context of this workshop, the `spike` tool is utilized for simulation and debugging purposes:
 
-- To verify whether the produced instructions yield the expected output, execute `spike pk p1.o`.
+- To verify whether the produced instructions yield the expected output, execute `spike pk sum1ton.c`.
 
-- For debugging purposes, utilize `spike -d pk p1.c`.
+- For debugging purposes, utilize `spike -d pk 1ton.c`.
 
 You can also view the register contents during debugging:
 
@@ -167,3 +167,108 @@ int main() {
 ![Unsigned Numbers](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/e32dbadb-460f-4ac8-aff0-e9f58dbec94f)
 
 For more details, refer to the respective code files in the [`unsigned.c`](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/unsigned.c) 
+
+
+
+# Application Binary Interface (ABI)
+
+## Introduction to ABI
+An **Application Binary Interface (ABI)** comprises a set of regulations and principles that define how binary code interacts and communicates with other binary code, typically at the level of machine code or compiled code. Put simply, it establishes the interface between two software components or systems that are composed in different programming languages, compiled by diverse compilers, or operating on varying hardware architectures.
+
+The ABI is of utmost importance in facilitating interoperability between distinct software components, such as different libraries, object files, or even entire programs. By adhering to a common set of rules for communication and data representation, it enables components compiled independently and potentially on different platforms to seamlessly collaborate.
+
+## Memory Allocation for Multi-Byte Values
+When dealing with a 64-bit number or any multi-byte value, its storage in memory can follow either a little-endian or big-endian byte order. This involves understanding the arrangement of bytes based on their significance.
+
+- **Little-Endian**: In this representation, the least significant byte (LSB) is stored at the lowest memory address, while the most significant byte (MSB) is placed at the highest memory address.
+- **Big-Endian**: In contrast, the most significant byte (MSB) is stored at the lowest memory address, and the least significant byte (LSB) is situated at the highest memory address.
+
+
+## Load, Add, and Store Instructions
+Load, Add, and Store instructions constitute fundamental operations in computer architecture and assembly programming. They are essential for manipulating data within a computer's memory and registers.
+
+- **Load Instructions**: These instructions transfer data from memory to registers. They fetch data from a specified memory address and place it into a register for further processing. For example: `ld x6, 8(x5)` where `ld` is the load double-word instruction, `x6` is the destination register, and `8(x5)` is the memory address accessed through register `x5` (base address + offset).
+
+- **Store Instructions**: Store instructions, on the other hand, are employed to write data from registers into memory. They store register values into designated memory addresses. For instance: `sd x8, 8(x9)` where `sd` signifies the store double-word instruction, `x8` is the source register, and `8(x9)` is the memory address accessed via register `x9` (base address + offset).
+
+- **Add Instructions**: Add instructions are used to perform addition operations on registers. They add the values of two source registers and store the result in a destination register. For example: `add x9, x10, x11` where `add` is the add instruction, `x9` is the destination register, and `x10` and `x11` are the source registers.
+
+## 32 Registers and Their ABI Names
+The choice of the number of registers in a processor's architecture, such as the RISC-V RV64 architecture with its 32 general-purpose registers, involves a trade-off between various factors. While modern processors could have more registers, increasing their count might lead to larger instructions, potentially consuming more memory and impacting instruction fetch and decode speed.
+
+ABI names for registers play a pivotal role in standardizing the purpose and usage of specific registers within a software ecosystem. These names aid in maintaining compatibility, optimizing code generation, and facilitating communication between different software components.
+
+<img width="430" alt="API" src="https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/507379c1-b0d9-436b-8f03-d111491b3231">
+
+
+## Labwork using ABI Function Calls
+### Algorithm for Incorporating ASM into C Program
+
+Incorporating assembly language code into a C program can be achieved through inline assembly or by linking separate assembly files with your C code. When you invoke an assembly function from your C code, the C calling convention is followed. This involves pushing arguments onto the stack or passing them in registers as necessary.
+
+The program subsequently executes the assembly function, following the assembly instructions provided by you.
+
+### Review of ASM Function Calls
+
+For the purpose of integrating assembly code with C code, two distinct files were used. The C code was written in one file, while the assembly code was contained in a separate file.
+
+In the assembly file, assembly functions were declared with appropriate signatures that align with the calling conventions of the specific platform.
+
+## C Program: `1to9_custom.c`
+
+```c
+#include <stdio.h>
+
+extern int load(int x, int y);
+
+int main()
+{
+  int result = 0;
+  int count = 9;
+  result = load(0x0, count + 1);
+  printf("Sum of numbers from 1 to 9 is %d\n", result);
+}
+```
+
+## Assembly Code: `load.s`
+
+```assembly
+.section .text
+.global load
+.type load, @function
+
+load:
+   add a4, a0, zero
+   add a2, a0, a1
+   add a3, a0, zero
+
+loop:
+   add a4, a3, a4
+   addi a3, a3, 1
+   blt a3, a2, loop
+   add a0, a4, zero
+   ret
+```
+
+## Simulating the C Program using Function Call
+
+### Compilation:
+
+To compile the C code and assembly file, use the following command:
+
+```bash
+riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o 1to9_custom.o 1to9_custom.c load.s
+```
+
+This command will generate the object file `1to9_custom.o`.
+
+### Execution:
+
+To execute the object file using the Spike RISC-V simulator, run the command:
+
+```bash
+spike $(which pk) 1to9_custom.o
+```
+![day2](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/7013a12f-a532-46f6-8fe5-8ac945dde85b)
+
+This will simulate the execution of the program and provide you with the corresponding output.
