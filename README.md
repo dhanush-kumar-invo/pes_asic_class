@@ -82,7 +82,7 @@ Memory allocation assigns and manages memory segments for program data structure
 
 #### Labwork for RISCV Toolchain
 C Program:
-A C program 'p1.c' was created to calculate the sum from 1 to 'n' using a text editor like gedit.
+A C program '1ton.c' was created to calculate the sum from 1 to 'n' using a text editor like gedit.
 
 ```c
 #include <stdio.h>
@@ -98,7 +98,7 @@ int main() {
 
 The program was compiled using the GCC compiler to obtain the output."
 ```
-gcc p1.c
+gcc 1ton.c
 ./a.out
 ```
 ![p1](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/e050f42c-3117-44dd-a37e-fdbdb83c9e1f)
@@ -107,15 +107,15 @@ gcc p1.c
 Using the RISC-V GCC compiler, we compiled the C program.
 
 ```c
-riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o p1.o p1.c
+riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sum1ton.c 1ton.c
 ```
 
-Using ls -ltr p1.c we can check that the object file is created. 2
+Using ls -ltr 1ton.c we can check that the object file is created. 2
 ![ls -ltr](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/4f1651a4-88bf-451b-a451-5528b53b1316)
 
 To get the dissembled ALP code for the C program,
 ```
-riscv64-unknown-elf-objdump -d p1.o | less 
+riscv64-unknown-elf-objdump -d sum1ton.c | less 
 ```
 In order to view the main section, type /main 4
 ![Screenshot from 2023-08-21 19-11-17](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/70ca1873-e085-47fc-b08f-b3aa1725811c)
@@ -127,9 +127,9 @@ Here, since we used -O1 optimisation, the number of instructions are 26.
 
 In the context of this workshop, the `spike` tool is utilized for simulation and debugging purposes:
 
-- To verify whether the produced instructions yield the expected output, execute `spike pk p1.o`.
+- To verify whether the produced instructions yield the expected output, execute `spike pk sum1ton.c`.
 
-- For debugging purposes, utilize `spike -d pk p1.c`.
+- For debugging purposes, utilize `spike -d pk 1ton.c`.
 
 You can also view the register contents during debugging:
 
