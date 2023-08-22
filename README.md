@@ -183,14 +183,6 @@ When dealing with a 64-bit number or any multi-byte value, its storage in memory
 - **Little-Endian**: In this representation, the least significant byte (LSB) is stored at the lowest memory address, while the most significant byte (MSB) is placed at the highest memory address.
 - **Big-Endian**: In contrast, the most significant byte (MSB) is stored at the lowest memory address, and the least significant byte (LSB) is situated at the highest memory address.
 
-For instance, let's consider the 64-bit hexadecimal value 0x0123456789ABCDEF:
-- In Little-Endian representation, the memory storage is as follows:
-
-  ![Little-Endian](link-to-image1)
-
-- In Big-Endian representation, the memory storage is as follows:
-
-  ![Big-Endian](link-to-image2)
 
 ## Load, Add, and Store Instructions
 Load, Add, and Store instructions constitute fundamental operations in computer architecture and assembly programming. They are essential for manipulating data within a computer's memory and registers.
@@ -206,7 +198,7 @@ The choice of the number of registers in a processor's architecture, such as the
 
 ABI names for registers play a pivotal role in standardizing the purpose and usage of specific registers within a software ecosystem. These names aid in maintaining compatibility, optimizing code generation, and facilitating communication between different software components.
 
-![ABI Register Names]<img width="430" alt="API" src="https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/507379c1-b0d9-436b-8f03-d111491b3231">
+<img width="430" alt="API" src="https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/507379c1-b0d9-436b-8f03-d111491b3231">
 
 
 ## Labwork using ABI Function Calls
