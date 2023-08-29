@@ -280,7 +280,6 @@ This will simulate the execution of the program and provide you with the corresp
 
 
 
-```markdown
 # Labs using iVerilog and GTKwave
 
 ## Introduction to Lab
@@ -343,11 +342,9 @@ To view the contents of files:
 ![2](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/ba8316e6-8d85-4091-b9be-4601bb35df5b)
 
 
-```
 
 
 
-```markdown
 # Labs using Yosys and Sky130 PDKs
 
 ## Yosys - Synthesizing the "good_mux" Module
