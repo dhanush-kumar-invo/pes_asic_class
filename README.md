@@ -272,3 +272,155 @@ spike $(which pk) 1to9_custom.o
 ![day2](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/7013a12f-a532-46f6-8fe5-8ac945dde85b)
 
 This will simulate the execution of the program and provide you with the corresponding output.
+
+
+
+
+
+
+
+
+```markdown
+# Labs using iVerilog and GTKwave
+
+## Introduction to Lab
+
+1. Create a directory named `vsd`:
+   ```
+   mkdir vsd
+   cd vsd
+   ```
+
+2. Clone the GitHub repository containing the lab materials:
+   ```
+   git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
+   ```
+
+   This creates a folder named `sky130RTLDesignAndSynthesisWorkshop` within the `vsd` directory.
+
+   
+
+- `my_lib`: Contains all the library files
+- `lib`: Contains the sky130 standard cell library used for synthesis
+- `verilog_model`: Contains standard cell Verilog modules from the standard cell library
+- `verilog_files`: Contains Verilog source files and testbench files required for labs
+
+## iVerilog GTKwave Part-1
+
+1. Navigate to the verilog_files directory:
+   ```
+   cd vsd/sky130RTLDesignAndSynthesisWorkshop/verilog_files
+   `![1](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/4b9d7e44-72b9-4609-823d-2deec04af282)
+``
+
+2. Load the source code and testbench code into the iVerilog simulator:
+   ```
+   iverilog good_mux.v tb_good_mux.v
+   ```
+
+   This command compiles the code, and an output file `a.out` is generated.
+
+3. Run the compiled program:
+   ```
+   ./a.out
+   ```
+
+4. The output of iVerilog is a VCD file, which can be loaded into the GTKwave simulator:
+   ```
+   gtkwave tb_good_mux.vcd
+   ```
+
+
+
+## iVerilog GTKwave Part-2
+
+To view the contents of files:
+
+ Use a text editor like `gvim` to open files:
+   ```
+   gvim tb_good_mux.v -o good_mux.v
+   ```
+![2](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/ba8316e6-8d85-4091-b9be-4601bb35df5b)
+
+
+```
+
+
+
+```markdown
+# Labs using Yosys and Sky130 PDKs
+
+## Yosys - Synthesizing the "good_mux" Module
+
+1. Navigate to the verilog_files directory:
+   ```
+   cd vsd/sky130RTLDesignAndSynthesisWorkshop/verilog_files
+   ```
+
+2. Invoke Yosys:
+   ```
+   yosys
+   ```![3](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/240892b3-5930-4fb1-977f-9f7a7454b4c6)
+
+
+
+3. Read the library:
+   ```
+   read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+   ```
+
+4. Read the design source file:
+   ```
+   read_verilog good_mux.v
+   ```
+
+5. Perform synthesis for the specified module:
+   ```
+   synth -top good_mux
+   ```
+![4](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/5c25baf6-c1b4-461d-8d32-bdcb8de8a721)
+
+![synth](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/ce61835d-e03a-4ee5-a5b9-b541411fd64d)
+
+
+
+6. Generate the netlist using ABC:
+   ```
+   abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+   ```![generate](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/c8e3ec48-c3f0-46c3-b74b-5b8b8607cf97)
+
+
+
+7. Examine the used cells, input and output signals:
+   ```
+   show
+   ```
+
+   ![Show Logic](link_to_image4)
+
+8. The multiplexer design is realized using sky130 library cells.
+
+9. Write the netlist to a file:
+   ```
+   write_verilog good_mux_netlist.v
+   ```
+
+   Open the netlist in a text editor:
+   ```
+   gvim good_mux_netlist.v
+   ```
+
+10. To view a simplified netlist:
+    ```
+    write_verilog -noattr good_mux_netlist.v
+    ```
+
+    Open the simplified netlist in a text editor:
+    ```
+    gvim good_mux_netlist.v
+    ```
+![write the netlist_code](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/76595eb2-558b-45d5-b775-eff801ca2363)
+![write the netlist](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/5d15e36a-dfae-495c-842b-e02ac612eedf)
+
+```
+
