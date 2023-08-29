@@ -309,8 +309,8 @@ This will simulate the execution of the program and provide you with the corresp
 1. Navigate to the verilog_files directory:
    ```
    cd vsd/sky130RTLDesignAndSynthesisWorkshop/verilog_files
-   `![1](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/4b9d7e44-72b9-4609-823d-2deec04af282)
-``
+   ```
+   ![1](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/4b9d7e44-72b9-4609-823d-2deec04af282)
 
 2. Load the source code and testbench code into the iVerilog simulator:
    ```
@@ -357,7 +357,8 @@ To view the contents of files:
 2. Invoke Yosys:
    ```
    yosys
-   ```![3](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/240892b3-5930-4fb1-977f-9f7a7454b4c6)
+   ```
+   ![3](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/240892b3-5930-4fb1-977f-9f7a7454b4c6)
 
 
 
@@ -384,7 +385,8 @@ To view the contents of files:
 6. Generate the netlist using ABC:
    ```
    abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-   ```![generate](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/c8e3ec48-c3f0-46c3-b74b-5b8b8607cf97)
+   ```
+   ![generate](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/c8e3ec48-c3f0-46c3-b74b-5b8b8607cf97)
 
 
 
@@ -393,7 +395,6 @@ To view the contents of files:
    show
    ```
 
-   ![Show Logic](link_to_image4)
 
 8. The multiplexer design is realized using sky130 library cells.
 
