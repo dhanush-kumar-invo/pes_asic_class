@@ -276,8 +276,28 @@ This will simulate the execution of the program and provide you with the corresp
 
 
 
+# Introduction to Open-Source Simulator: iVerilog
+
+## Introduction to iVerilog Design Testbench Simulator
+
+A simulator is a crucial tool used to simulate digital circuit designs. It monitors input signal changes to evaluate output behavior. If no input change occurs, the simulator won't evaluate outputs. Simulation verifies whether the RTL (Register-Transfer Level) design adheres to specifications. In this context, we'll be using the iverilog simulator.
+
+## iVerilog: An Open-Source Simulator
+
+iVerilog is an open-source Verilog simulator that facilitates testing and simulation of digital circuit designs described in the Verilog hardware description language (HDL). The simulator takes both the design and testbench as input and generates a vcd (value change dump) file. To visualize the vcd file's waveforms, we utilize a tool called GTKwave.
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/c89005ce-530d-4193-9ebc-479b9f34a686)
+
+## Design: Actual Verilog Code
+
+A design encompasses the actual Verilog code or a collection of codes, embodying the intended functionality aligned with required specifications. Verilog is employed to delineate both the behavior and structure of digital circuits across various levels of abstraction, from high-level system descriptions to low-level gate-level representations.
+
+## Testbench: A Crucial Verification Tool
+
+A testbench is a specialized Verilog module or program employed to validate the functionality and behavior of another Verilog module, circuit, or design. Testbenches play a pivotal role in testing and simulating digital designs before they undergo synthesis or physical chip manufacturing. Testbenches set up a stimulus application to examine the design's functionality.
 
 
+
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/1e5da14a-02d7-40cf-b30f-8e1e3b210058)
 
 
 # Labs using iVerilog and GTKwave
@@ -341,6 +361,81 @@ To view the contents of files:
    ```
 ![2](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/ba8316e6-8d85-4091-b9be-4601bb35df5b)
 
+
+
+
+
+
+# Introduction to Yosys and Logic Synthesis
+
+## Introduction to Yosys: The Synthesizer
+
+A synthesizer is a vital tool used to transform RTL (Register Transfer Level) design code into a netlist. In our context, we utilize Yosys as the synthesizer.
+
+## Yosys: An Open-Source Synthesis Framework
+
+Yosys is an open-source framework designed for Verilog RTL synthesis and formal verification. It offers a suite of tools and algorithms that empower designers to convert high-level RTL descriptions of digital circuits into optimized gate-level representations suitable for physical implementation on hardware.
+
+
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/512bab8e-e6e8-4368-a2b4-84f42eaab6c3)
+
+During the synthesis process, both the design and .lib files are provided to Yosys, resulting in the creation of a netlist file. A netlist represents the design as standard cells within the .lib.
+
+Commands used to perform different operations include:
+
+- `read_verilog`: Used to read the design.
+- `read_liberty`: Used to read the .lib file.
+- `write_verilog`: Used to generate the netlist file.
+
+## Verification of Synthesis
+
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/1478da40-db26-4e26-bc41-555f7c45b81c)
+
+
+For verification, the netlist is combined with the testbench and fed into the iVerilog simulator. The generated VCD file is then passed to the GTKwave simulator. The simulator's output should match what was observed during RTL simulation. As primary inputs and primary outputs remain consistent between the RTL design and synthesized netlist, the same RTL testbench can be employed.
+
+## Introduction to Logic Synthesis
+
+### Logic Synthesis Process
+
+Logic synthesis is a pivotal step in digital design. It converts a high-level hardware description of a digital circuit, often in a hardware description language (HDL) like Verilog or VHDL, into a lower-level representation composed of logic gates and flip-flops. The aim is to optimize the design considering factors like performance, area, power consumption, and timing.
+
+### The .lib Files
+
+The `.lib` files comprise logical modules such as And, Or, and Not gates. They encompass various versions of the same gate, such as 2-input AND gates and 3-input AND gates, with varying performance speeds.
+
+#### Need for Different Gate Versions
+
+Clock frequency directly influences circuit speed. To enhance circuit speed, a higher clock frequency is desirable, necessitating a shorter clock period.
+
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/3474b2d2-01d9-42d1-a395-0d31c79c7f4c)
+
+
+For sequential circuits, clock period is contingent upon:
+
+- Clock to Q of flip-flop A.
+- Propagation delay of the combinational circuit.
+- Setup time of flip-flop B.
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/3f97237d-ccfc-494e-9444-0fb64ac36016)
+
+
+#### Fast and Slow Cells
+
+To avoid HOLD issues at flip-flop B, slow cells are needed. Conversely, faster cells are vital for minimized propagation time. The collection of these cells forms the .lib.
+
+### Faster Cells vs. Slower Cells
+
+Load in a digital circuit corresponds to capacitance. Faster charging/discharging of capacitance results in lower cell delay. However, quick charge/discharge necessitates transistors capable of sourcing more current, meaning wider transistors. Wider transistors reduce delay but increase area and power consumption.
+
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/3f97237d-ccfc-494e-9444-0fb64ac36016)
+
+
+
+Faster cells come at the cost of area and power. The choice between narrower and wider transistors involves trade-offs between delay, area, and performance.
+
+### Cell Selection
+
+Synthesizers require guidance to choose the optimal cell version for implementing a logic circuit. Overuse of faster cells leads to undesirable power and area consumption, as well as hold time violations. Conversely, excessive use of slower cells yields sluggish circuits that might not meet performance needs. Constraints are applied to the synthesizer to offer guidance, striking a balance between various factors.
 
 
 
@@ -420,5 +515,208 @@ To view the contents of files:
 ![write the netlist_code](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/76595eb2-558b-45d5-b775-eff801ca2363)
 ![write the netlist](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/5d15e36a-dfae-495c-842b-e02ac612eedf)
 
+
+
+
+
+
+# Day 4: Introduction to Timing Dot Libs
+
+## Introduction to Dot Lib Files
+
+To explore the contents of the `.lib` file, execute the following command:
+
+```bash
+gvim ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 ```
+
+![Dot Lib](image_link_dotlib)
+
+The first line in the file, "library ("sky130_fd_sc_hd__tt_025C_1v80")," signifies:
+
+- "tt": Represents variations due to process, where "Typical Process" is indicated.
+- "025C": Signifies variations due to temperature, specifically the silicon's operating temperature.
+- "1v80": Reflects variations due to voltage levels where the silicon operates.
+- The file also presents the units for various parameters.
+
+## Viewing Contents and Features
+
+To enable line numbering: `:set nu`
+
+To view all cells: `:g//`
+
+To view a specific instance: `:/instance`
+
+The file details all cells' attributes. For the 32 possible combinations (due to 5 inputs), it provides delay, power, and other parameters for each cell.
+
+![Cell Features](image_link_cell_features)
+
+## Hierarchical vs. Flat Synthesis
+
+### Hierarchical Synthesis
+
+Hierarchical synthesis involves breaking complex designs into smaller modules or sub-circuits, which are synthesized individually. These modules are then integrated back into the overall design hierarchy. This approach aids in managing complexity and enables designers to work independently on different design portions.
+
+The file used in this lab: `multiple_modules.v`
+
+```bash
+cd vsd/sky130RTLDesignAndSynthesisWorkshop/verilog_files
+gvim multiple_modules.v
+```
+
+![Hierarchical Synthesis](image_link_hierarchical)
+
+The `multiple_modules` instantiates `sub_module1` and `sub_module2`.
+
+Launch Yosys:
+
+```bash
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_modules.v
+synth -top multiple_modules
+```
+
+### Flattened Synthesis
+
+Flattened synthesis amalgamates all modules and sub-modules into a single, flat representation, eliminating the original hierarchical structure.
+
+```bash
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_modules.v
+synth -top multiple_modules
+flatten
+```
+
+## Various Flop Coding Styles and Optimization
+
+### Significance of Flops and Flop Coding Styles
+
+- A flip-flop (flop) is a fundamental digital circuit element.
+- It stores binary data (0 or 1) based on clock signals and inputs.
+- It prevents glitches during data propagation.
+- Flops ensure glitch-free input for subsequent combinational circuits.
+
+### D Flip-Flop with Asynchronous Reset
+
+When the reset is high, the flip-flop's output becomes 0, regardless of the clock. Otherwise, on the positive clock edge, the stored value is updated.
+
+```bash
+gvim dff_asyncres_syncres.v
+```
+
+![D Flip-Flop with Asynchronous Reset](image_link_dff_asyncres)
+
+### D Flip-Flop with Asynchronous Set
+
+When the set is high, the flip-flop's output becomes 1, regardless of the clock. Otherwise, on the positive clock edge, the stored value is updated.
+
+```bash
+gvim dff_async_set.v
+```
+
+![D Flip-Flop with Asynchronous Set](image_link_dff_asyncset)
+
+### D Flip-Flop with Synchronous Reset
+
+When the reset is high on the positive clock edge, the flip-flop's output becomes 0. Otherwise, on the positive clock edge, the stored value is updated.
+
+```bash
+gvim dff_syncres.v
+```
+
+![D Flip-Flop with Synchronous Reset](image_link_dff_syncres)
+
+### D Flip-Flop with Asynchronous and Synchronous Reset
+
+When the asynchronous reset is high, the output is forced to 0. When the synchronous reset is high at the positive clock edge, the output is forced to 0. Otherwise, on the positive clock edge, the stored value is updated.
+
+```bash
+gvim dff_asyncres_syncres.v
+```
+
+![D Flip-Flop with Asynchronous and Synchronous Reset](image_link_dff_asyncressyncres)
+
+## Lab: Flop Synthesis and Simulations
+
+### D Flip-Flop with Asynchronous Reset
+
+**Simulation:**
+
+```bash
+cd vsd/sky130RTLDesignAndSynthesisWorkshop/verilog_files
+iverilog dff_asyncres.v tb_dff_asyncres.v
+./a.out
+gtkwave tb_dff_asyncres.vcd
+```
+
+**Synthesis:**
+
+```bash
+cd vsd/sky130RTLDesignAndSynthesisWorkshop/verilog_files
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_asyncres.v
+synth -top dff_asyncres
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+### D Flip-Flop with Asynchronous Set
+
+**Simulation:**
+
+```bash
+cd vsd/sky130RTLDesignAndSynthesisWorkshop/verilog_files
+iverilog dff_async_set.v tb_dff_async_set.v
+./a.out
+gtkwave tb_dff_async_set.vcd
+```
+
+**Synthesis:**
+
+```bash
+cd vsd/sky130RTLDesignAndSynthesisWorkshop/verilog_files
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_async_set.v
+synth -top dff_async_set
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+### D Flip-Flop with Synchronous Reset
+
+**Simulation:**
+
+```bash
+cd vsd/sky130RTLDesignAndSynthesisWorkshop/verilog_files
+iverilog dff_syncres.v tb_dff_syncres.v
+./a.out
+gtkwave tb_dff_syncres.vcd
+```
+
+**Synthesis:**
+
+```bash
+cd vsd/sky130RTLDesignAndSynthesisWorkshop/verilog_files
+yosys
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_syncres.v
+synth -top dff_syncres
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+### Interesting Optimizations
+
+Explore optimization examples by working with Verilog files and Yosys synthesis commands.
+
+
+
+
 
