@@ -763,8 +763,7 @@ Explore optimization examples by working with Verilog files and Yosys synthesis 
 
 Sure, here is the text repeated:
 
-```markdown
-# Week 1
+
 
 ## DAY 5: Introduction to Optimisations
 
@@ -779,7 +778,7 @@ Combinational logic refers to logic circuits where the outputs depend only on th
 
 - Boolean logic optimization, also known as logic minimization or Boolean function simplification, is a process in digital design that aims to simplify Boolean expressions or logic circuits by reducing the number of terms, literals, and gates required to implement a given logical function.
 
-- Sequential Logic Optimisations
+**Sequential Logic Optimisations**
 
 Sequential logic optimizations involve improving the efficiency, performance, and resource utilization of digital circuits that include memory elements like flip-flops and latches. Optimizing sequential logic is crucial in ensuring that digital circuits meet timing requirements, consume minimal power, and occupy the least possible area while maintaining correct functionality.
 
@@ -795,12 +794,11 @@ Sequential logic optimizations involve improving the efficiency, performance, an
 
 - Combinational Logic Optimisations
 
-![opt_check](opt_check.png)
 
 ```shell
 gvim opt_check.v
 ```
-
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/23ffdc0d-fa54-4683-b241-9ec278c55015)
 ```shell
 read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 read_verilog opt_check.v
@@ -809,12 +807,15 @@ opt_clean -purge
 abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/89aeb5ec-109b-46af-9921-66e089656d85)
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/3d833b3b-cde0-4308-8530-a46a046e5a30)
 
-![opt_check2](opt_check2.png)
+## opt_check2
 
 ```shell
 gvim opt_check2.v
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/78d94b84-916c-4ea5-9430-50795dd06d22)
 
 ```shell
 read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
@@ -824,12 +825,14 @@ opt_clean -purge
 abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/88b0e7a7-123d-4139-a1fc-5c0816713f8a)
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/db499f6f-357c-47b2-a7e9-9ef7e9154787)
 
-![opt_check3](opt_check3.png)
-
+## opt_check3
 ```shell
 gvim opt_check3.v
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/1b8b4306-ac8e-4076-99a1-22fcccd8a230)
 
 ```shell
 read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
@@ -839,12 +842,14 @@ opt_clean -purge
 abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/74b75452-fc57-40d2-a5ae-4dc0740683b4)
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/a8eb6258-bc1a-4d91-9673-83596dd5ae15)
 
-![opt_check4](opt_check4.png)
-
+## opt_check4
 ```shell
 gvim opt_check4.v
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/c07bcc9a-2ab7-462c-807e-f7c773a48ac6)
 
 ```shell
 read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
@@ -854,12 +859,14 @@ opt_clean -purge
 abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/28aaef16-cb6c-4685-b047-09bb6815c936)
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/f99afa29-11b8-4df1-8e5b-ead7afdab8e3)
 
-![multiple_module_opt](multiple_module_opt.png)
-
+## multiple_module_opt
 ```shell
 gvim multiple_module_opt.v
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/180c8215-d618-4e48-a1b9-394e0ce7c698)
 
 ```shell
 read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
@@ -869,10 +876,13 @@ opt_clean -purge
 abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/fbf35cbc-d353-469a-a70c-4db051686c78)
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/d9fbadd0-f3b2-4979-9b6e-beb6f492efc4)
 
-- Sequential Logic Optimisations
 
-![dff_const1](dff_const1.png)
+## Sequential Logic Optimisations
+
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/3efbaa25-2b83-4f79-aafb-e18d78dad426)
 
 ```shell
 gvim dff_const1.v
@@ -885,6 +895,7 @@ iverilog dff_const1.v tb_dff_const1.v
 ./a.out
 gtkwave tb_dff_const1.vcd
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/59684ffa-f821-41e2-93de-283cf53c81bf)
 
 **Synthesis**
 
@@ -896,12 +907,15 @@ dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/ff977139-c6fb-4f54-a163-682442b3bdd1)
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/f98a1819-faba-4756-a7d6-67fc5c6db8c7)
 
-![dff_const2](dff_const2.png)
+## dff_const2
 
 ```shell
 gvim dff_const2.v
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/6d499750-d9a1-445d-9d5c-d8f6b04e72cc)
 
 **Simulation**
 
@@ -910,6 +924,7 @@ iverilog dff_const2.v tb_dff_const2.v
 ./a.out
 gtkwave tb_dff_const2.vcd
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/60b869f5-1c72-4fe6-8c7b-bc1b2db1dcad)
 
 **Synthesis**
 
@@ -921,12 +936,15 @@ dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/3194b1cf-410e-45f4-92fa-4323799ce2e1)
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/cd57e110-c8d1-46be-b8a0-6d7a482fa716)
 
-![dff_const3](dff_const3.png)
+## dff_const3
 
 ```shell
 gvim dff_const3.v
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/4734422e-d169-4b1a-9ce7-402aa798d65c)
 
 **Simulation**
 
@@ -935,6 +953,7 @@ iverilog dff_const3.v tb_dff_const3.v
 ./a.out
 gtkwave tb_dff_const3.vcd
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/90a38c06-a190-4c9e-bbf6-f3cca7eac4c5)
 
 **Synthesis**
 
@@ -946,14 +965,15 @@ dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/be24941a-80bd-44d8-88a6-bfd22899e32c)
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/050be6fb-08bc-4485-a9ed-fdf16dd75dd2)
 
-![dff_const4
-
-](dff_const4.png)
+## dff_const4
 
 ```shell
 gvim dff_const4.v
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/9112929c-a8ee-4314-a2f6-30d4240ffaaf)
 
 **Simulation**
 
@@ -962,6 +982,7 @@ iverilog dff_const4.v tb_dff_const4.v
 ./a.out
 gtkwave tb_dff_const4.vcd
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/9df0f9f0-ad5d-4dbb-ac96-81f18c35da29)
 
 **Synthesis**
 
@@ -973,12 +994,15 @@ dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/26b565e4-4a3a-43cc-bbb8-c47bac75055b)
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/d246f00c-3be3-4634-9134-1c7d5554a819)
 
-![dff_const5](dff_const5.png)
+## dff_const5
 
 ```shell
 gvim dff_const5.v
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/72c31dd0-ff9c-49bc-af5f-d1ae6eecd72e)
 
 **Simulation**
 
@@ -987,6 +1011,7 @@ iverilog dff_const4.v tb_dff_const4.v
 ./a.out
 gtkwave tb_dff_const4.vcd
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/917352ba-b39b-4602-b58b-7b7aee03220f)
 
 **Synthesis**
 
@@ -998,14 +1023,17 @@ dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/2398f497-7d46-4deb-ba12-078f96d5cb0a)
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/3b6b8860-6db0-4829-b62c-baa961a2d059)
 
 **Sequential Optimisations for Unused Outputs**
 
-![counter_opt](counter_opt.png)
 
+## counter_opt
 ```shell
 gvim counter_opt.v
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/7a5cae8e-a881-48ff-ad59-c2b4d71a6a10)
 
 **Simulation**
 
@@ -1025,12 +1053,14 @@ dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show
 ```
-
-![counter_opt2](counter_opt2.png)
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/65fb3dc2-f49f-46bc-b1e6-c20c0ee3d2d2)
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/4a13e61a-2d1c-4ac9-9251-ef36300be9a4)
+## counter_opt2
 
 ```shell
 gvim counter_opt2.v
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/e22676d3-9df7-467a-8b91-2dbeb57d770b)
 
 **Simulation**
 
@@ -1050,6 +1080,8 @@ dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/79234683-219c-48b6-8f73-d7c35dcef4e9)
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/ef91c421-3e88-45b0-9af0-81ab65fd1b0f)
 
 ## DAY 6: GLS, Blocking vs Non-Blocking, and Synthesis-Simulation Mismatch
 
@@ -1058,6 +1090,7 @@ show
 - Gate Level Simulation
 
 Gate-level simulation is a technique used in digital design and verification to validate the functionality of a digital circuit at the gate-level implementation. It involves simulating the circuit using the actual logic gates and flip-flops that make up the design, as opposed to higher-level abstractions like RTL (Register Transfer Level) descriptions. This type of simulation is typically performed after the logic synthesis process, where a high-level description of the design is transformed into a netlist of gates and flip-flops. We perform this to verify logical correctness of the design after synthesizing it. Also ensuring the timing of the design is met.
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/9ebb6d64-5c4b-47d8-a055-8213c2e034d3)
 
 **Synthesis-Simulation Mismatch**
 
@@ -1128,7 +1161,8 @@ Blocking statements in hardware description languages like Verilog have their us
 
 **Labs on GLS and Synthesis-Simulation Mismatch**
 
-![ternary_operator_mux](ternary_operator_mux.png)
+
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/b493aa83-bf80-4524-955a-b7cc3c441e44)
 
 ```shell
 gvim ternary_operator_mux.v
@@ -1141,6 +1175,7 @@ iverilog ternary_operator_mux.v tb_ternary_operator_mux.v
 ./a.out
 gtkwave tb_ternary_operator_mux.vcd
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/680fea49-9379-4416-a089-b1364bc61f10)
 
 **Synthesis**
 
@@ -1151,20 +1186,24 @@ synth -top ternary_operator_mux
 abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/a2b041c5-8043-4fde-8852-51903fdbe275)
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/0f6ba620-1038-406d-955c-7072d076b633)
 
-![GLS to Gate-Level Simulation](GLS_to_Gate-Level_Simulation.png)
-
+## gls to gate-level simulation
 ```shell
 iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v ternary_operator_mux_net.v tb_ternary_operator_mux.v
 ./a.out
 gtkwave tb_ternary_operator_mux.vcd
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/58f0a57f-1828-4940-8907-d441addb33ed)
 
-![bad_mux](bad_mux.png)
 
+
+## bad mux
 ```shell
 gvim bad_mux.v
 ```
+![image](https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/bce92569-3880-4f27-bb5f-93475b98769d)
 
 **Simulation**
 
@@ -1173,6 +1212,7 @@ iverilog bad_mux.v tb_bad_mux.v
 ./a.out
 gtkwave tb_bad_mux.vcd
 ```
+<img width="500" alt="10" src="https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/b74394b1-c081-45a9-b511-e2eba4c98a3d">
 
 **Synthesis**
 
@@ -1183,18 +1223,23 @@ synth -top bad_mux
 abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show
 ```
+<img width="190" alt="9" src="https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/6f7366a2-da8c-402c-b16c-8d47438b2123">
+<img width="302" alt="8" src="https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/f2bc5eb7-92a1-4d96-af52-d302ba5262a6">
 
-![GLS to Gate-Level Simulation](GLS_to_Gate-Level_Simulation.png)
 
+**GLS TO Gate-level Simulation**
 ```shell
 iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v bad_mux_net.v tb_bad_mux.v
 ./a.out
 gtkwave tb_bad_mux.vcd
 ```
+<img width="501" alt="7" src="https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/3d6d1d56-70ce-4d5c-81ac-098184519126">
+
 
 **Labs on Synth-Sim Mismatch for Blocking Statement**
 
-![blocking_caveat](blocking_caveat.png)
+<img width="327" alt="6" src="https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/8f664883-81dc-442d-acda-67072e26266f">
+
 
 ```shell
 gvim blocking_caveat.v
@@ -1207,6 +1252,7 @@ iverilog blocking_caveat.v tb_blocking_caveat.v
 ./a.out
 gtkwave tb_blocking_caveat.vcd
 ```
+<img width="392" alt="5" src="https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/83bbfc8e-4717-4448-af08-980571e9efdb">
 
 **Synthesis**
 
@@ -1218,13 +1264,17 @@ abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show
 ```
 
-![GLS to Gate-Level Simulation](GLS_to_Gate-Level_Simulation.png)
+<img width="197" alt="4" src="https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/4c6871e2-3072-4cf4-a631-58d2b7ee7dfc">
+
+<img width="302" alt="3" src="https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/9ba344ea-9cd2-4b9a-b4b3-8b3a40e594f4">
+
 
 ```shell
 iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v blocking_caveat_net.v tb_blocking_caveat.v
 ./a.out
 gtkwave tb_blocking_caveat.vcd
 ```
+<img width="502" alt="1" src="https://github.com/dhanush-kumar-invo/pes_asic_class/assets/73644447/b5e61c87-8e61-4e6a-93c6-f68b24ee693b">
 
 ## Repeat the same...
 ```
