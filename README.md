@@ -61,6 +61,51 @@ To initiate the VLSI Physical Design for ASICs workshop, follow these steps:
   - RTL (Register Transfer Level)
   - Hardware
 
+
+## DAY 3: Introduction to Verilog RTL Design and Synthesis
+
+- Introduction to Open-Source Simulator iVerilog
+- Introduction to iVerilog Design Testbench
+- Labs using iVerilog and GTKwave
+  - Introduction to Lab
+  - iVerilog GTKwave Part-1
+  - iVerilog GTKwave Part-2
+- Introduction to Yosys and Logic Synthesis
+  - Introduction to Yosys
+  - Introduction to Logic Synthesis
+- Labs using Yosys and Sky130 PDKs
+  - Yosys good mux
+
+## DAY 4: Timing Libs, Hierarchical vs Flat Synthesis, and Efficient Flop Coding Styles
+
+- Introduction to Timing Dot Libs
+- Introduction to Dot Lib
+- Hierarchical vs Flat Synthesis
+  - Hierarchical Synthesis
+  - Flat Synthesis
+- Various Flop Coding Styles and Optimization
+  - Why Flops and Flop Coding Styles
+- Lab Flop Synthesis Simulations
+  - Interesting Optimisations
+
+## DAY 5: Combinational and Sequential Optimizations
+
+- Introduction to Optimisations
+- Combinational Logic Optimisations
+- Sequential Logic Optimisations
+- Sequential Optimisations for Unused Outputs
+
+## DAY 6: GLS, Blocking vs Non-Blocking, and Synthesis-Simulation Mismatch
+
+- GLS Synthesis-Simulation Mismatch and Blocking Non-Blocking Statements
+- GLS Concepts and Flow Using iVerilog
+- Synthesis Simulation Mismatch
+- Blocking And Non-Blocking Statements In Verilog
+  - Caveats With Blocking Statements
+- Labs on GLS and Synthesis-Simulation Mismatch
+- Labs on Synth-Sim Mismatch for Blocking Statement
+
+
 ### Detailed Course Content
 #### Pseudo Instructions
 Pseudo-instructions simplify programming, enhance code readability, and reduce the explicit instructions needed. They are particularly useful for common programming patterns involving multiple instructions (e.g., 'li', 'mv').
@@ -716,7 +761,472 @@ show
 
 Explore optimization examples by working with Verilog files and Yosys synthesis commands.
 
+Sure, here is the text repeated:
 
+```markdown
+# Week 1
 
+## DAY 5: Introduction to Optimisations
 
+- Introduction to Optimisations
+- Combinational Optimisation
 
+Combinational logic refers to logic circuits where the outputs depend only on the current inputs and not on any previous states. Combinational optimization is a field of study in computer science and operations research that focuses on finding the best possible solution from a finite set of options for problems that involve discrete variables and have no inherent notion of time. Optimizing the combinational logic circuit is squeezing the logic to get the most optimized digital design so that the circuit finally is area and power efficient.
+
+**Techniques for Optimisations:**
+
+- Constant propagation is an optimization technique used in compiler design and digital circuit synthesis to improve the efficiency of code and circuit implementations by replacing variables or expressions with their constant values where applicable.
+
+- Boolean logic optimization, also known as logic minimization or Boolean function simplification, is a process in digital design that aims to simplify Boolean expressions or logic circuits by reducing the number of terms, literals, and gates required to implement a given logical function.
+
+- Sequential Logic Optimisations
+
+Sequential logic optimizations involve improving the efficiency, performance, and resource utilization of digital circuits that include memory elements like flip-flops and latches. Optimizing sequential logic is crucial in ensuring that digital circuits meet timing requirements, consume minimal power, and occupy the least possible area while maintaining correct functionality.
+
+**Optimization methods:**
+
+- Sequential constant propagation, also known as constant propagation across sequential elements, is an optimization technique used in digital design to identify and propagate constant values through sequential logic elements like flip-flops and registers. This technique aims to replace variable values with their known constant values at various stages of the logic circuit, optimizing the design for better performance and resource utilization.
+
+- State optimization, also known as state minimization or state reduction, is an optimization technique used in digital design to reduce the number of states in finite state machines (FSMs) while preserving the original functionality.
+
+- Sequential logic cloning, also known as retiming-based cloning or register cloning, is a technique used in digital design to improve the performance of a circuit by duplicating or cloning existing registers (flip-flops) and introducing additional pipeline stages. This technique aims to balance the critical paths within a circuit and reduce its overall clock period, leading to improved timing performance and better overall efficiency.
+
+- Retiming is an optimization technique used in digital design to improve the performance of a circuit by repositioning registers (flip-flops) along its paths to balance the timing and reduce the critical path delay. The primary goal of retiming is to achieve a shorter clock period without changing the functionality of the circuit.
+
+- Combinational Logic Optimisations
+
+![opt_check](opt_check.png)
+
+```shell
+gvim opt_check.v
+```
+
+```shell
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog opt_check.v
+synth -top opt_check
+opt_clean -purge
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![opt_check2](opt_check2.png)
+
+```shell
+gvim opt_check2.v
+```
+
+```shell
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog opt_check2.v
+synth -top opt_check2
+opt_clean -purge
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![opt_check3](opt_check3.png)
+
+```shell
+gvim opt_check3.v
+```
+
+```shell
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog opt_check3.v
+synth -top opt_check3
+opt_clean -purge
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![opt_check4](opt_check4.png)
+
+```shell
+gvim opt_check4.v
+```
+
+```shell
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog opt_check4.v
+synth -top opt_check4
+opt_clean -purge
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![multiple_module_opt](multiple_module_opt.png)
+
+```shell
+gvim multiple_module_opt.v
+```
+
+```shell
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog multiple_module_opt.v
+synth -top multiple_module_opt
+opt_clean -purge
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+- Sequential Logic Optimisations
+
+![dff_const1](dff_const1.png)
+
+```shell
+gvim dff_const1.v
+```
+
+**Simulation**
+
+```shell
+iverilog dff_const1.v tb_dff_const1.v
+./a.out
+gtkwave tb_dff_const1.vcd
+```
+
+**Synthesis**
+
+```shell
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_const1.v
+synth -top dff_const1
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![dff_const2](dff_const2.png)
+
+```shell
+gvim dff_const2.v
+```
+
+**Simulation**
+
+```shell
+iverilog dff_const2.v tb_dff_const2.v
+./a.out
+gtkwave tb_dff_const2.vcd
+```
+
+**Synthesis**
+
+```shell
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_const2.v
+synth -top dff_const2
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![dff_const3](dff_const3.png)
+
+```shell
+gvim dff_const3.v
+```
+
+**Simulation**
+
+```shell
+iverilog dff_const3.v tb_dff_const3.v
+./a.out
+gtkwave tb_dff_const3.vcd
+```
+
+**Synthesis**
+
+```shell
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_const3.v
+synth -top dff_const3
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![dff_const4
+
+](dff_const4.png)
+
+```shell
+gvim dff_const4.v
+```
+
+**Simulation**
+
+```shell
+iverilog dff_const4.v tb_dff_const4.v
+./a.out
+gtkwave tb_dff_const4.vcd
+```
+
+**Synthesis**
+
+```shell
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_const4.v
+synth -top dff_const4
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![dff_const5](dff_const5.png)
+
+```shell
+gvim dff_const5.v
+```
+
+**Simulation**
+
+```shell
+iverilog dff_const4.v tb_dff_const4.v
+./a.out
+gtkwave tb_dff_const4.vcd
+```
+
+**Synthesis**
+
+```shell
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog dff_const4.v
+synth -top dff_const4
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+**Sequential Optimisations for Unused Outputs**
+
+![counter_opt](counter_opt.png)
+
+```shell
+gvim counter_opt.v
+```
+
+**Simulation**
+
+```shell
+iverilog counter_opt.v tb_counter_opt.v
+./a.out
+gtkwave tb_counter_opt.vcd
+```
+
+**Synthesis**
+
+```shell
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog counter_opt.v
+synth -top counter_opt
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![counter_opt2](counter_opt2.png)
+
+```shell
+gvim counter_opt2.v
+```
+
+**Simulation**
+
+```shell
+iverilog counter_opt2.v tb_counter_opt2.v
+./a.out
+gtkwave tb_counter_opt2.vcd
+```
+
+**Synthesis**
+
+```shell
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog counter_opt2.v
+synth -top counter_opt2
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+## DAY 6: GLS, Blocking vs Non-Blocking, and Synthesis-Simulation Mismatch
+
+- GLS Synthesis-Simulation Mismatch and Blocking Non-blocking Statements
+- GLS Concepts And Flow Using Iverilog
+- Gate Level Simulation
+
+Gate-level simulation is a technique used in digital design and verification to validate the functionality of a digital circuit at the gate-level implementation. It involves simulating the circuit using the actual logic gates and flip-flops that make up the design, as opposed to higher-level abstractions like RTL (Register Transfer Level) descriptions. This type of simulation is typically performed after the logic synthesis process, where a high-level description of the design is transformed into a netlist of gates and flip-flops. We perform this to verify logical correctness of the design after synthesizing it. Also ensuring the timing of the design is met.
+
+**Synthesis-Simulation Mismatch**
+
+A synthesis-simulation mismatch refers to a situation in digital design where the behavior of a circuit, as observed during simulation, doesn't match the expected or desired behavior of the circuit after it has been synthesized. This discrepancy can occur due to various reasons, such as timing issues, optimization conflicts, and differences in modeling between the simulation and synthesis tools. This mismatch is a critical concern in digital design because it indicates that the actual hardware implementation might not perform as expected, potentially leading to functional or timing failures in the fabricated chip.
+
+**Blocking Statements**
+
+Blocking statements are executed sequentially in the order they appear in the code and have an immediate effect on signal assignments.
+
+Example:
+
+```verilog
+module BlockingExample(input A, input B, input C, output Y, output Z);
+  wire temp;
+
+  // Blocking assignment
+  assign temp = A & B;
+
+  always @(posedge C) begin
+      // Blocking assignment
+      Y = temp;
+      Z = ~temp;
+  end
+endmodule
+```
+
+**Non-Blocking Statements**
+
+Non-blocking assignments are used to model concurrent signal updates, where all assignments are evaluated simultaneously and then scheduled to be updated at the end of the time step.
+
+Example:
+
+```verilog
+module NonBlockingExample(input clock, input D, input reset, output reg Q);
+
+ always @(posedge clock or posedge reset) begin
+     if (reset)
+         Q <= 0;  // Reset the flip-flop
+     else
+         Q <= D;  // Non-blocking assignment to update Q with D on clock edge
+ end
+endmodule
+```
+
+**Caveats with Blocking Statements**
+
+Blocking statements in hardware description languages like Verilog have their uses, but there are certain caveats and considerations to be aware of when working with them. Here are some important caveats associated with using blocking statements:
+
+- Procedural Execution: Blocking statements are executed sequentially in the order they appear within a procedural block (such as an always block). This can lead to unexpected behavior if the order of execution matters and is not well understood.
+
+- Lack of Parallelism: Blocking statements do not accurately represent the parallel nature of hardware. In hardware, multiple signals can update concurrently, but blocking statements model sequential behavior. As a result, using blocking statements for modeling complex concurrent logic can lead to incorrect simulations.
+
+- Race Conditions: When multiple blocking assignments operate on the same signal within the same procedural block, a race condition can occur. The outcome of such assignments depends on their order of execution, which might lead to inconsistent or unpredictable behavior.
+
+- Limited Representation of Hardware: Hardware systems are inherently concurrent and parallel, but blocking statements do not capture this aspect effectively. Using blocking assignments to model complex combinational or sequential logic can lead to models that are difficult to understand, maintain, and debug.
+
+- Combinatorial Loops: Incorrect use of blocking statements can lead to unintentional combinational logic loops, which can result in simulation or synthesis errors.
+
+- Debugging Challenges: Debugging code with many blocking assignments can be challenging, especially when trying to track down timing-related issues.
+
+- Not Suitable for Flip-Flops: Blocking assignments are not suitable for modeling flip-flop behavior. Non-blocking assignments (<=) are generally preferred for modeling flip-flop updates to ensure accurate representation of concurrent behavior.
+
+- Sequential Logic Misrepresentation: Using blocking assignments to model sequential logic might not capture the intended behavior accurately. Sequential elements like registers and flip-flops are better represented using non-blocking assignments.
+
+- Synthesis Implications: The behavior of blocking assignments might not translate well during synthesis, leading to potential
+
+ mismatches between simulation and synthesis results.
+
+**Labs on GLS and Synthesis-Simulation Mismatch**
+
+![ternary_operator_mux](ternary_operator_mux.png)
+
+```shell
+gvim ternary_operator_mux.v
+```
+
+**Simulation**
+
+```shell
+iverilog ternary_operator_mux.v tb_ternary_operator_mux.v
+./a.out
+gtkwave tb_ternary_operator_mux.vcd
+```
+
+**Synthesis**
+
+```shell
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog ternary_operator_mux.v
+synth -top ternary_operator_mux
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![GLS to Gate-Level Simulation](GLS_to_Gate-Level_Simulation.png)
+
+```shell
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v ternary_operator_mux_net.v tb_ternary_operator_mux.v
+./a.out
+gtkwave tb_ternary_operator_mux.vcd
+```
+
+![bad_mux](bad_mux.png)
+
+```shell
+gvim bad_mux.v
+```
+
+**Simulation**
+
+```shell
+iverilog bad_mux.v tb_bad_mux.v
+./a.out
+gtkwave tb_bad_mux.vcd
+```
+
+**Synthesis**
+
+```shell
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog bad_mux.v
+synth -top bad_mux
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![GLS to Gate-Level Simulation](GLS_to_Gate-Level_Simulation.png)
+
+```shell
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v bad_mux_net.v tb_bad_mux.v
+./a.out
+gtkwave tb_bad_mux.vcd
+```
+
+**Labs on Synth-Sim Mismatch for Blocking Statement**
+
+![blocking_caveat](blocking_caveat.png)
+
+```shell
+gvim blocking_caveat.v
+```
+
+**Simulation**
+
+```shell
+iverilog blocking_caveat.v tb_blocking_caveat.v
+./a.out
+gtkwave tb_blocking_caveat.vcd
+```
+
+**Synthesis**
+
+```shell
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog blocking_caveat.v
+synth -top blocking_caveat
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show
+```
+
+![GLS to Gate-Level Simulation](GLS_to_Gate-Level_Simulation.png)
+
+```shell
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v blocking_caveat_net.v tb_blocking_caveat.v
+./a.out
+gtkwave tb_blocking_caveat.vcd
+```
+
+## Repeat the same...
+```
+
+You can continue the pattern for the remaining content.
